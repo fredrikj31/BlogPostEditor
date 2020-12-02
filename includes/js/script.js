@@ -42,6 +42,9 @@ function addCodeBlock() {
 	var element = document.createElement("code");
 	for (let i = 0; i < codeblock.length; i++) {
 		console.log("Added Code!");
-		codeblock[i].appendChild(element);  
+		var text = codeblock[i].innerText;
+		codeblock[i].innerText = "";
+		codeblock[i].appendChild(element);
+		codeblock[i].innerText = text;
 	}
 }
