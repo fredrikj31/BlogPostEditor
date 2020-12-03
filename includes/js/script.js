@@ -1,50 +1,20 @@
-// Blockquote classes
-var blockquoteClasses = ["blockquote", "m-lg-5", "py-3", "pl-4", "px-lg-5"];
-
-
+// Highlight
 $(document).ready(function () {
-	$("#summernote").summernote({
-		placeholder: "Hello Bootstrap 4",
-		tabsize: 2,
-		height: 500,
-		disableGrammar: false,
-		styleTags: [
-			'p', 'blockquote', 'pre', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'
-		],
-	});
+	/* ======= Highlight.js Plugin ======= */
+	/* Ref: https://highlightjs.org/usage/ */
 });
 
 // Change event
-$("#summernote").on("summernote.change", function (we, contents, $editable) {
-	$("#editorPreview").html($("#summernote").summernote("code"));
-	//console.log($("#summernote").summernote("code"));
-	
-	addBlockQuote();
-	addCodeBlock();
+var editor = CKEDITOR.replace("editor1", {
+	extraPlugins: "codesnippet, emoji",
 });
 
+editor.on("change", function () {
+	var data = editor.getData();
 
-function addBlockQuote() {
-	var blogpost = document.getElementById("editorPreview");
-	var blockquote = blogpost.getElementsByTagName("blockquote");
-	//console.log(blockquote);
-	for (var i = 0; i < blockquote.length; i++) {
-		for (let j = 0; j < blockquoteClasses.length; j++) {
-			blockquote[i].classList.add(blockquoteClasses[j]);
-		}
-	}
-}
-
-
-function addCodeBlock() {
-	var blogpost = document.getElementById("editorPreview");
-	var codeblock = blogpost.getElementsByTagName("pre");
-	var element = document.createElement("code");
-	for (let i = 0; i < codeblock.length; i++) {
-		console.log("Added Code!");
-		var text = codeblock[i].innerText;
-		codeblock[i].innerText = "";
-		codeblock[i].appendChild(element);
-		codeblock[i].innerText = text;
-	}
-}
+	$("#editorPreview").html(data);
+	$("pre code").each(function (i, block) {
+		hljs.highlightBlock(block);
+	});
+	//console.log(data);
+});

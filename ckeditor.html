@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>CK Editor</title>
+</head>
+
+<body>
+	<textarea name="editor1"></textarea>
+
+	<!-- CKEditor -->
+	<script src="https://cdn.ckeditor.com/4.15.1/standard-all/ckeditor.js"></script>
+	<script>
+		
+		CKEDITOR.replace('editor1', {
+			extraPlugins: 'codesnippet, emoji',
+		});
+	</script>
+</body>
+
+</html>
