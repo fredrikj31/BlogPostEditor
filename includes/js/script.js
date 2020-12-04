@@ -16,5 +16,6 @@ editor.on("change", function () {
 	$("pre code").each(function (i, block) {
 		hljs.highlightBlock(block);
 	});
+	$("blockquote").addClass("blockquote m-lg-5 py-3 pl-4 px-lg-5");
 	//console.log(data);
 });
