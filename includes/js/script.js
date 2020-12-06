@@ -6,7 +6,7 @@ $(document).ready(function () {
 
 // Change event
 var editor = CKEDITOR.replace("editor1", {
-	extraPlugins: "codesnippet, emoji",
+	extraPlugins: "codesnippet, emoji, indent, indentlist",
 });
 
 editor.on("change", function () {
@@ -16,6 +16,13 @@ editor.on("change", function () {
 	$("pre code").each(function (i, block) {
 		hljs.highlightBlock(block);
 	});
-	$("blockquote").addClass("blockquote m-lg-5 py-3 pl-4 px-lg-5");
 	//console.log(data);
+
+
+	// Blockquote
+	$("blockquote").addClass("blockquote m-lg-5 py-3 pl-4 px-lg-5");
+	
+	// Table
+	$("table").removeAttr("cellpadding cellspacing style border");
+	$("table").addClass("table table-striped my-5");
 });
